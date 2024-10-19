@@ -3,7 +3,6 @@ package com.hayi.vampair
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -29,8 +28,6 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.hayi.vampair.ui.common.LevelChooserDialog
-import com.hayi.vampair.ui.common.Levels
-import com.hayi.vampair.ui.common.ToggleButtons
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -74,12 +71,7 @@ class MainActivity : ComponentActivity() {
                     Text(text = "Sharpen Your Mind: Find the Matching Cards!", style = MaterialTheme.typography.bodyMedium)
                     Spacer(modifier = Modifier.height(20.dp))
                     Button(onClick = {
-//                        val intent = Intent(this@MainActivity, GameActivity::class.java)
-//                        intent.putExtra("start", 1)
-//                        intent.putExtra("end", 4)
-//                        startActivity(intent)
                         showLevelDialog.value = true
-
                     }) {
                         Text(text = "Start new game")
                     }

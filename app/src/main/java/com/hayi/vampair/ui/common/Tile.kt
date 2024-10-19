@@ -2,36 +2,22 @@
 
 package com.hayi.vampair.ui.common
 
-import android.R
-import android.util.Log
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.twotone.Check
 import androidx.compose.material.icons.twotone.PlayArrow
-import androidx.compose.material.icons.twotone.Refresh
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -54,6 +40,7 @@ fun GameCard(
     cardNumber: Int,
     cardValue: Int,
     onCardClicked: (rotated: Boolean, item: GameCardItem) -> Unit,
+    showImageOnCorrect: Boolean,
     modifier: Modifier = Modifier
 ) {
     val visible = remember { mutableStateOf(true) }
@@ -67,11 +54,20 @@ fun GameCard(
             contentAlignment = Alignment.Center
         ) {
             Box(modifier = Modifier.align(Alignment.Center)) {
-                Icon(
-                    Icons.Rounded.Check,
-                    contentDescription = "", modifier = Modifier.size(50.dp).padding(10.dp),
-                    tint = Color.Green.copy(alpha = 0.5f)
-                )
+                when {
+                    showImageOnCorrect -> Card(
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) {
+                        CardFace("https://i.pravatar.cc/300?img=$cardValue")
+                    }
+                    else -> Icon(
+                        Icons.Rounded.Check,
+                        contentDescription = "", modifier = Modifier.size(50.dp).padding(10.dp),
+                        tint = Color.Green.copy(alpha = 0.5f)
+                    )
+                }
+
             }
         }
     } else {
@@ -118,6 +114,9 @@ fun GameCard(
                         rotated = !rotated
                         onCardClicked(rotated, GameCardItem(cardNumber, cardValue, revertCard))
                     },
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFF87A2FF)
+                )
             )
             {
                 Box(

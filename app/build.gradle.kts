@@ -63,6 +63,11 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc01")
 //    implementation("io.coil-kt:coil-gif:2.1.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-rc01")
+    implementation ("androidx.datastore:datastore-preferences:1.1.1")
+    implementation ("androidx.datastore:datastore-preferences-core:1.1.1")
+    implementation("androidx.datastore:datastore-preferences-rxjava2:1.1.1")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
